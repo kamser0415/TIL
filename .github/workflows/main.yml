@@ -12,8 +12,8 @@ permissions:
 
 env:
   INSTANCE: 'Writerside/k'
-  ARTIFACT: 'webHelpLEARNING_CORDING2-all.zip'
-  DOCKER_VERSION: '233.14938'
+  ARTIFACT: 'webHelpK2-all.zip'
+  DOCKER_VERSION: '241.16003'
 
 jobs:
   build:

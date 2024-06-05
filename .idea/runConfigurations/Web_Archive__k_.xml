@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Web Archive (k)" type="StardustRunConfiguration" factoryName="save-as-zip">
+    <option name="folderPath" value="$PROJECT_DIR$" />
+    <option name="instanceId" value="k" />
+    <option name="instanceName" value="KeepALearning" />
+    <method v="2" />
+  </configuration>
+</component>
