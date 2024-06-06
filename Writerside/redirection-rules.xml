@@ -10,4 +10,8 @@
         <description>Created after removal of "QUIZ" from KeepALearning</description>
         <accepts>QUIZ.html</accepts>
     </rule>
+    <rule id="78a1994f">
+        <description>Created after removal of "Reference" from KeepALearning</description>
+        <accepts>Reference.html</accepts>
+    </rule>
 </rules>
