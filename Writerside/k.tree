@@ -11,6 +11,8 @@
         <toc-element topic="QUIZ.md"/>
     </toc-element>
     <toc-element topic="TIL.md">
-        <toc-element topic="TIL-2024.md"/>
+        <toc-element topic="TIL-2024.md">
+            <toc-element topic="TIL-2024-06-06.md"/>
+        </toc-element>
     </toc-element>
 </instance-profile>
