@@ -13,6 +13,7 @@
     <toc-element topic="TIL.md">
         <toc-element topic="TIL-2024.md">
             <toc-element topic="TIL-2024-06-06.md"/>
+            <toc-element topic="MySQL-인덱스-B-tree.md"/>
         </toc-element>
     </toc-element>
     <toc-element topic="Study.md">
