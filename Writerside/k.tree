@@ -19,6 +19,7 @@
     <toc-element topic="Study.md">
         <toc-element topic="MySQL.md">
             <toc-element topic="RealMySQL-1-08.md"/>
+            <toc-element topic="RealMySQL-1-08-Rtree.md"/>
         </toc-element>
     </toc-element>
 </instance-profile>
