@@ -212,4 +212,20 @@ FROM
 | MBR test            | 반경 1km를 벗어납니다   |  1286.249232082653 |      0 |      0 |            0 |              0 |              0 |
 | 반경 검색 641m      | 구글로 약 641m          |  641.4014356463341 |      0 |      1 |            1 |              0 |              0 |
 +---------------------+-------------------------+--------------------+--------+--------+--------------+----------------+----------------+
-```
+```  
+
+```SQL
+EXPLAIN
+SELECT * FROM locations_mysql
+WHERE  ST_Contains(ST_Buffer(ST_GeomFromText('POINT(37.4303521 127.1299667)', 4326),642), point);
+```    
+샘플데이터 약 5만개 기준 인덱스는 잘 동작합니다.  
+
+| id | select\_type | table            | partitions | type  | possible\_keys | key        | key\_len | ref  | rows | filtered | Extra       |
+|:---|:-------------|:-----------------|:-----------|:------|:---------------|:-----------|:---------|:-----|:-----|:---------|:------------|
+| 1  | SIMPLE       | locations\_mysql | null       | range | idx\_point     | idx\_point | 34       | null | 1    | 100      | Using where |
+
+
+
+
++ [나중에 참고할 자료](https://github.com/gazi-gazi/real-mysql/issues/33)
