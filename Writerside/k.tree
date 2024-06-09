@@ -35,6 +35,7 @@
         </toc-element>
         <toc-element topic="java-compare.md">
             <toc-element topic="java-compare-override-overload.md"/>
+            <toc-element topic="java-compare-arraylist.md"/>
             <toc-element topic="java-compare-equals-hashcode.md"/>
             <toc-element topic="java-compare-primitive-referrence.md"/>
             <toc-element topic="java-compare-static.md"/>
