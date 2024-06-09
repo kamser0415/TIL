@@ -14,4 +14,8 @@
         <description>Created after removal of "Reference" from KeepALearning</description>
         <accepts>Reference.html</accepts>
     </rule>
+    <rule id="6fe59efa">
+        <description>Created after removal of "오버로딩과 오버라이딩 정의 및 차이점" from</description>
+        <accepts>java-overrideAndoverload.html</accepts>
+    </rule>
 </rules>
