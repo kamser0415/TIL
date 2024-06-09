@@ -40,6 +40,7 @@
             <toc-element topic="java-compare-static.md"/>
             <toc-element topic="java-compare-enum.md"/>
             <toc-element topic="java-compare-exception.md"/>
+            <toc-element topic="java-compare-annotation.md"/>
         </toc-element>
         <toc-element topic="QUIZ.md"/>
     </toc-element>

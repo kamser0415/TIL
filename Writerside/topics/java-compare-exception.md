@@ -238,14 +238,9 @@ Checked Exception은 외부 자원 접근이나 중요한 작업에서 발생할
                if (socket != null) {
                    socket.close
 
-();
-}
-}
-}
-}
    ```
 
-## Unchecked Exception 사용 예
+## 언체크 예외 사용 예
 
 Unchecked Exception은 런타임 시점에 발생하며, 주로 프로그래머의 실수나 논리 오류를 나타냅니다. 이러한 예외는 컴파일러가 강제하지 않으며, 필요에 따라 예외 처리를 할 수 있습니다. 주요 사용 예를 들어보겠습니다:
 
