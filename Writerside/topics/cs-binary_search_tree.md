@@ -125,7 +125,47 @@ BST에서의 삽입, 삭제, 검색 연산은 특정 규칙에 따라 이루어�
 1. **최악의 경우**: 트리가 한쪽으로 치우친 경우, 시간 복잡도는 O(n)입니다.
 2. **일반적인 경우**: 트리가 균형을 이루는 경우, 시간 복잡도는 O(log n)입니다.
 
-### 장점과 단점
+시간 복잡도가 O(log N) 라는 의미는 알고리즘의 실행 시간이 입력 크기 N 에 대해 로그 함수의 형태로 증가한다는 것을 의미합니다. 이진 탐색 트리(BST)와 관련된 경우, N 은 트리의 노드 수를 의미하며, 이진 탐색 트리의 높이가 log N 에 비례하기 때문에 트리의 높이에 따라 알고리즘의 성능이 결정됩니다.
+
+### 왜 O(log N) 인가?
+
+#### 이진 탐색 트리의 구조
+
+- **이진 탐색 트리(BST)** 는 각 노드가 최대 두 개의 자식 노드를 가지는 트리입니다.
+- 트리의 왼쪽 자식 노드에는 부모 노드보다 작은 값들이, 오른쪽 자식 노드에는 부모 노드보다 큰 값들이 저장됩니다.
+- 이상적인 경우(즉, 트리가 균형 잡힌 경우)에 이진 탐색 트리의 높이는 log N 에 비례합니다.
+
+#### 연산의 시간 복잡도
+
+이진 탐색 트리에서 대표적인 연산(삽입, 삭제, 검색)의 시간 복잡도를 살펴보겠습니다.
+
+1. **검색(Search)**:
+    - 최악의 경우 루트에서 시작하여 리프 노드까지 내려가야 합니다.
+    - 균형 잡힌 트리에서는 높이가 log N 이므로, 검색 연산의 시간 복잡도는 O(log N) 입니다.
+
+2. **삽입(Insert)**:
+    - 새로운 노드를 삽입할 위치를 찾기 위해 검색 연산을 수행합니다.
+    - 따라서 삽입 연산의 시간 복잡도도 O(log N) 입니다.
+
+3. **삭제(Delete)**:
+    - 삭제할 노드를 찾기 위해 검색 연산을 수행한 후, 트리 구조를 재조정합니다.
+    - 검색 연산이 O(log N) , 재조정도 O(log N) 에 비례하므로, 삭제 연산의 시간 복잡도도 O(log N) 입니다.
+
+### 트리의 균형
+
+위의 설명은 트리가 균형 잡힌 경우를 전제로 합니다. 하지만 이진 탐색 트리가 항상 균형 잡히는 것은 아닙니다. 최악의 경우, 트리가 한쪽으로 치우치면 높이가 N 에 비례하게 되어 시간 복잡도가 O(N) 이 될 수 있습니다. 이런 경우를 방지하기 위해 AVL 트리, 레드-블랙 트리와 같은 자가 균형 이진 탐색 트리가 사용됩니다.
+
+### 로그 함수의 특징
+
+로그 함수는 입력 크기 N 에 대해 매우 느리게 증가합니다. 예를 들어, N 이 1000일 때, log_2 1000 = 10 입니다. 즉, 노드가 1000개 있는 트리에서의 연산도 10단계 정도의 비교만 필요하다는 것을 의미합니다.
+
+### 요약
+
+- 시간 복잡도가 O(log N) 인 알고리즘은 입력 크기 N 에 대해 로그 함수 형태로 실행 시간이 증가합니다.
+- 이진 탐색 트리의 높이가 log N 에 비례하므로, 트리의 높이에 따라 주요 연산(검색, 삽입, 삭제)이 O(log N)시간 복잡도를 가집니다.
+- 이진 탐색 트리의 구조가 균형 잡힌 경우 이러한 시간 복잡도가 유지됩니다.
+
+## 장점과 단점
 1. **장점**
     - 삽입과 삭제가 유연하며, 정렬된 데이터를 순회할 수 있습니다.
 
@@ -326,7 +366,7 @@ root> 20
     public class BstPlayGround {
         public static void main(String[] args) {
             BinarySearchTree bst = new BinarySearchTree();
-    
+        
             bst.insert(20);
             bst.insert(10);
             bst.insert(30);
@@ -336,36 +376,35 @@ root> 20
             bst.insert(40);
             bst.insert(3);
             bst.insert(7);
-            bst.delete(10);
-    
-            System.out.print("Inorder traversal: ");
+        
+            System.out.println("(중위 순회) Inorder traversal: 왼쪽 -> 현재 -> 오른쪽");
             bst.inorder();
             System.out.println();
-    
-            System.out.print("Preorder traversal: ");
+        
+            System.out.println("(전위 순회) Preorder traversal: 현재 노드 -> 왼쪽 -> 오른쪽");
             bst.preorder();
             System.out.println();
-    
-            System.out.print("Postorder traversal: ");
+        
+            System.out.println("(후위 순회) Postorder traversal: 왼쪽 -> 오른쪽 -> 현재 노드");
             bst.postorder();
             System.out.println();
-    
-            System.out.println("Search for value 7: " + (bst.search(7) != null ? "Found" : "Not Found"));
-            System.out.println("Search for value 100: " + (bst.search(100) != null ? "Found" : "Not Found"));
-    
+        
+            System.out.println("7은 현재 노드에 " + (bst.search(7) != null ? "있다." : "없다."));
+            System.out.println("100은 현재 노드에 " + (bst.search(100) != null ? "있다." : "없다."));
+        
             bst.delete(10);
-            System.out.print("Inorder traversal after deleting 10: ");
+            System.out.print("중위 순회 후 10을 삭제합니다 ");
             bst.inorder();
             System.out.println();
-    
+        
             TreeNode successor = bst.successor(bst.root, 20);
-            System.out.println("Successor of 20: " + (successor != null ? successor.value : "None"));
-    
+            System.out.println("20의 후임자 : " + (successor != null ? successor.value : "None"));
+        
             successor = bst.successor(bst.root, 10);
-            System.out.println("Successor of 10: " + (successor != null ? successor.value : "None"));
-    
+            System.out.println("10의 후임자 : " + (successor != null ? successor.value : "None"));
+        
             successor = bst.successor(bst.root, 5);
-            System.out.println("Successor of 5: " + (successor != null ? successor.value : "None"));
+            System.out.println("5의 후임자 : " + (successor != null ? successor.value : "None"));
         }
     }
     ```
@@ -386,16 +425,16 @@ root> 20
 코드를 실행하면 다음과 같은 결과를 볼 수 있습니다:
 
 ```
-Inorder traversal: 3 5 7 15 20 25 30 40 
-Preorder traversal: 20 5 3 15 30 25 40 
-Postorder traversal: 3 15 5 25 40 30 20 
-Search for value 7: Found
-Search for value 100: Not Found
-Inorder traversal after deleting 10: 3 5 7 15 20 25 30 40 
-Successor of 20: 25
-Successor of 10: 15
-Successor of 5: 7
+(중위 순회) Inorder traversal: 왼쪽 -> 현재 -> 오른쪽
+3 5 7 10 15 20 25 30 40 
+(전위 순회) Preorder traversal: 현재 노드 -> 왼쪽 -> 오른쪽
+20 10 5 3 7 15 30 25 40 
+(후위 순회) Postorder traversal: 왼쪽 -> 오른쪽 -> 현재 노드
+3 7 5 15 10 25 40 30 20 
+7은 현재 노드에 있다.
+100은 현재 노드에 없다.
+중위 순회 후 10을 삭제합니다 3 5 7 15 20 25 30 40 
+20의 후임자 : 25
+10의 후임자 : None
+5의 후임자 : 7
 ```
-
-### 결론
-이진 탐색 트리는 효율적인 삽입, 삭제, 검색 연산을 제공하며, 후임자 개념을 통해 삭제 연산을 효과적으로 처리할 수 있습니다. 
