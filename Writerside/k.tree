@@ -27,6 +27,7 @@
             <toc-element topic="java-package.md"/>
             <toc-element topic="java-visibility.md"/>
             <toc-element topic="java-thread.md"/>
+            <toc-element topic="java-multithread.md"/>
             <toc-element topic="java-generic.md"/>
             <toc-element topic="java-array.md"/>
             <toc-element topic="java-variable.md"/>

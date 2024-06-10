@@ -12,7 +12,7 @@
 
 **hashCode와 equals 메소드의 관계**:
 - **hashCode**: 두 객체가 같다면(`equals` 메소드가 true를 반환하면) 반드시 같은 해시 코드를 가져야 합니다.
-- **equals**: 두 객체가 같을 때만 true를 반환해야 하며, `hashCode`가 같으면 equals도 true여야 합니다.
+- **equals**: 두 객체가 같을 때만 true를 반환해야 하며, `hashCode`가 g같으면 equals도 true여야 합니다.
 
 ### 제대로 구현하지 않았을 때 발생하는 문제
 

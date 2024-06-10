@@ -248,8 +248,9 @@ public class Main {
 ### 열거형에 부가적인 기능 추가
 `enum`은 더 복잡한 로직을 포함할 수 있으며, 생성자, 필드, 메서드뿐만 아니라 `abstract` 메서드를 정의하고 각 열거 상수에서 이를 구현할 수도 있습니다.
 
-예를 들어, 각 열거 상수가 다른 구현을 가지는 `abstract` 메서드를 추가하는 예제입니다:  
-  
+예를 들어, 각 열거 상수가 다른 구현을 가지는 `abstract` 메서드를 추가하는 예제입니다
+이 예제에서는 각 열거 상수가 `apply` 메서드를 고유하게 구현하여, 더 복잡한 행동을 할 수 있게 합니다.
+
 ```Java
 public enum Operation {
     PLUS {
@@ -264,22 +265,9 @@ public enum Operation {
     DIVIDE {
         double apply(double x, double y) { return x / y; }
     };
-
     abstract double apply(double x, double y);
 }
-public class Main {
-    public static void main(String[] args) {
-        double x = 10.0;
-        double y = 2.0;
-
-        for (Operation op : Operation.values()) {
-            System.out.printf("%f %s %f = %f%n", x, op, y, op.apply(x, y));
-        }
-    }
-}
 ```
-
-이 예제에서는 각 열거 상수가 `apply` 메서드를 고유하게 구현하여, 더 복잡한 행동을 할 수 있게 합니다.
 
 ## 요약
 - **열거 상수 사용**: `Day.MONDAY`처럼 사용하며, `enum` 타입을 통해 접근.
