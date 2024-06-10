@@ -196,6 +196,75 @@ public class Main {
 
 이처럼 `static` 메소드는 클래스 레벨에서 정의되므로, 클래스 이름을 통해 호출되고, 오버라이딩할 수 없으며, 하위 클래스에서 동일한 이름의 `static` 메소드를 정의하면 부모 클래스의 메소드를 숨기는(hiding) 효과가 있습니다.
 
+네, Java에서 메소드는 주로 두 가지 레벨에서 정의될 수 있습니다: 클래스 레벨과 인스턴스 레벨입니다. 이 두 가지 레벨의 차이점을 이해하면 Java에서 메소드 호출과 관련된 다양한 개념을 명확히 이해할 수 있습니다.
+
+### 1. 클래스 레벨 (Class Level)
+
+클래스 레벨에서는 `static` 키워드를 사용하여 메소드와 변수를 정의합니다. 클래스 레벨에서 정의된 메소드와 변수는 클래스 자체에 귀속되며, 인스턴스를 생성하지 않아도 클래스 이름을 통해 접근할 수 있습니다.
+
+#### 특징
+
+- **클래스에 속함**: `static` 메소드와 변수는 클래스 로드 시점에 메모리에 할당됩니다.
+- **인스턴스 불필요**: 클래스 이름으로 직접 호출할 수 있습니다.
+- **공유 자원**: 모든 인스턴스가 공유하는 자원으로 사용됩니다.
+
+#### 예제
+
+```java
+public class MyClass {
+    public static int staticVar = 0;
+
+    public static void staticMethod() {
+        System.out.println("Static method called");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyClass.staticMethod(); // 클래스 이름으로 직접 호출
+        System.out.println(MyClass.staticVar); // 클래스 이름으로 직접 접근
+    }
+}
+```
+
+### 2. 인스턴스 레벨 (Instance Level)
+
+인스턴스 레벨에서는 `static` 키워드를 사용하지 않고 메소드와 변수를 정의합니다. 인스턴스 레벨에서 정의된 메소드와 변수는 객체 인스턴스에 귀속되며, 각 인스턴스마다 별도로 존재합니다.
+
+#### 특징
+
+- **인스턴스에 속함**: 인스턴스를 생성할 때 메모리에 할당됩니다.
+- **인스턴스 필요**: 객체 인스턴스를 통해 호출해야 합니다.
+- **독립적 자원**: 각 인스턴스가 독립적으로 가지는 자원입니다.
+
+#### 예제
+
+```java
+public class MyClass {
+    public int instanceVar = 0;
+
+    public void instanceMethod() {
+        System.out.println("Instance method called");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj1 = new MyClass();
+        MyClass obj2 = new MyClass();
+
+        obj1.instanceMethod(); // 인스턴스를 통해 호출
+        obj2.instanceMethod(); // 다른 인스턴스를 통해 호출
+
+        obj1.instanceVar = 5;
+        obj2.instanceVar = 10;
+        
+        System.out.println(obj1.instanceVar); // 5
+        System.out.println(obj2.instanceVar); // 10
+    }
+}
+```
+
 ## 요약
 
 - **클래스 레벨** (`static` 키워드 사용): 클래스에 귀속되어 인스턴스 없이 호출할 수 있으며, 모든 인스턴스가 공유합니다.
