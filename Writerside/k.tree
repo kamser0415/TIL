@@ -13,6 +13,9 @@
             <toc-element topic="cs-binary_search_tree.md"/>
             <toc-element topic="cs-red-black-tree.md"/>
         </toc-element>
+        <toc-element topic="JVM.md">
+            <toc-element topic="java-jit.md"/>
+        </toc-element>
         <toc-element topic="f-lab-Java.md">
             <toc-element topic="java-programming.md"/>
             <toc-element topic="java-main.md"/>
