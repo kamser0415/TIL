@@ -3,7 +3,7 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="k"
-                 name=""
+                 name="차근차근"
                  start-page="starter-topic.md">
 
     <toc-element topic="starter-topic.md"/>
@@ -63,6 +63,7 @@
             <toc-element topic="TIL-2024-06-09.md"/>
             <toc-element topic="TIL-2024-06-10.md"/>
             <toc-element topic="TIL-2024-06-11.md"/>
+            <toc-element topic="TIL-2024-06-12.md"/>
         </toc-element>
     </toc-element>
     <toc-element topic="Study.md">
