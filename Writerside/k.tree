@@ -28,6 +28,7 @@
             <toc-element topic="java-equalsOrHash.md"/>
             <toc-element topic="java-collection-basic.md"/>
             <toc-element topic="java-collection-list.md"/>
+            <toc-element topic="java-collection-list-new.md"/>
             <toc-element topic="java-collection-set.md"/>
             <toc-element topic="java-collection-queue.md"/>
             <toc-element topic="java-collection-map.md"/>
