@@ -371,4 +371,81 @@ public void showMember(Container<? extends Member> container){
 
 제네릭 타입은 클래스를 생성할 때 결정되기 때문에 `static`이 붙은 정적 메서드나 정적 필드에 사용할 수 없습니다. 제네릭 타입은 인스턴스 레벨이지만, 정적 필드와 메서드는 클래스 레벨로 클래스 생성하기 전 호출 단계에서 이미 타입이 정해져야 하기 때문입니다.
 
-대신 제네릭 메서드 내부에서는 `public static <T extends Member> T getMember(T member){...}` 구조는 가능합니다. 이유는 컴파일러가 타입을 체크하는 시점이 메서드를 호출할 때 발생하므로 제네릭 클래스와 다르게 체크하는 시점이 다르기 때문입니다.
+대신 제네릭 메서드 내부에서는 `public static <T extends Member> T getMember(T member){...}` 구조는 가능합니다. 이유는 컴파일러가 타입을 체크하는 시점이 메서드를 호출할 때 발생하므로 제네릭 클래스와 다르게 체크하는 시점이 다르기 때문입니다.  
+
+자바에서 제네릭 타입 파라미터 'T'를 직접 인스턴스화할 수 없는 이유는 다음과 같습니다:
+
+1. **타입 소거(Type Erasure)**:
+    - 자바 컴파일러는 제네릭 타입 정보를 컴파일 타임에만 사용하고, 런타임에는 해당 정보를 제거합니다.
+    - 즉, 컴파일된 바이트코드에는 제네릭 타입에 대한 정보가 없으며, 모든 제네릭 타입은 그 상한(bound) 또는 기본적으로 `Object`로 대체됩니다.
+    - 따라서, 런타임에는 'T'가 어떤 타입인지 알 수 없기 때문에 `new T()`와 같은 코드를 사용할 수 없습니다.
+
+2. **생성자 제약(Constraints on Constructors)**:
+    - `T`가 인터페이스인지, 추상 클래스인지, 구체적인 클래스인지 알 수 없기 때문에 인스턴스를 생성하는 것은 불가능합니다.
+    - 또한, 'T'가 인자가 없는 기본 생성자를 반드시 갖고 있다는 보장이 없습니다. 따라서, `new T()`를 사용하면 컴파일 타임에는 에러가 발생합니다.
+
+이 두 가지 이유로 인해, 자바에서 제네릭 타입 파라미터를 직접 인스턴스화할 수 없습니다. 이를 더 명확히 이해하기 위해 예제를 살펴보겠습니다:
+
+### 타입 소거 예제
+```java
+public class Gen<T> {
+    public void createInstance() {
+        T obj = new T();  // 컴파일 에러: T를 직접 인스턴스화할 수 없음
+    }
+}
+```
+위 코드에서 `new T()`를 사용하려고 하면 컴파일 에러가 발생합니다. 이는 `T`가 어떤 타입인지 알 수 없기 때문입니다.
+
+### 타입 안전성과 생성자 제약 예제
+```java
+public class Gen<T> {
+    private Class<T> clazz;
+
+    public Gen(Class<T> clazz) {
+        this.clazz = clazz;
+    }
+
+    public T createInstance() throws IllegalAccessException, InstantiationException {
+        return clazz.newInstance();  // 런타임 에러 가능성: T가 기본 생성자를 갖고 있지 않을 수 있음
+    }
+}
+```
+위 코드에서 `clazz.newInstance()`를 사용하여 'T'의 인스턴스를 생성하려고 할 때, 'T'가 기본 생성자를 갖고 있지 않으면 런타임에 예외가 발생할 수 있습니다. 또한, 타입 소거로 인해 타입 안전성이 보장되지 않습니다.
+
+### 팩토리 패턴을 사용한 해결책
+이 문제를 해결하기 위한 안전한 방법 중 하나는 팩토리 패턴을 사용하는 것입니다:
+```java
+public interface Factory<T> {
+    T create();
+}
+
+public class Gen<T> {
+    private final Factory<T> factory;
+
+    public Gen(Factory<T> factory) {
+        this.factory = factory;
+    }
+
+    public T createNewInstance() {
+        return factory.create();
+    }
+}
+
+public class StringFactory implements Factory<String> {
+    public String create() {
+        return new String();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Factory<String> stringFactory = new StringFactory();
+        Gen<String> gen = new Gen<>(stringFactory);
+        String newInstance = gen.createNewInstance();
+        System.out.println(newInstance);
+    }
+}
+```
+위 코드에서 `Factory<T>` 인터페이스를 통해 타입 파라미터 'T'의 인스턴스를 생성할 수 있습니다. 이 방식은 타입 소거 문제와 생성자 제약을 우회할 수 있는 안전하고 유연한 해결책을 제공합니다.
+
+이와 같이 제네릭 타입 파라미터를 직접 인스턴스화할 수 없는 이유는 타입 소거와 생성자 제약 때문이며, 이를 해결하기 위해 팩토리 패턴과 같은 설계 패턴을 사용할 수 있습니다.
