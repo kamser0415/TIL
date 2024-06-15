@@ -76,6 +76,12 @@
         <toc-element topic="MySQL.md">
             <toc-element topic="RealMySQL-1-08.md"/>
             <toc-element topic="RealMySQL-1-08-Rtree.md"/>
+            <toc-element topic="RealMySQL-1-08-fulltext-index.md"/>
+            <toc-element topic="RealMySQL-1-08-function-index.md"/>
+            <toc-element topic="RealMySQL-1-08-multivalue-index.md"/>
+            <toc-element topic="RealMySQL-1-08-clustering-index.md"/>
+            <toc-element topic="RealMySQL-1-08-unique-key.md"/>
+            <toc-element topic="RealMySQL-1-08-foreign-key.md"/>
         </toc-element>
     </toc-element>
 </instance-profile>
